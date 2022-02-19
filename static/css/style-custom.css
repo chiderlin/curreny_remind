@@ -1,0 +1,30 @@
+
+.btn-update {
+    float:right;
+    margin-top:5px;
+    margin:20px;
+}
+
+.btn-delete{
+    float:left;
+    margin-top:-20%;
+    margin-left:5%;
+}
+
+.form-input{
+    color:blue;
+}
+
+@media (max-width:600px){
+    .box-center{
+        display:flex;
+        justify-content: center;
+    }
+
+
+    .btn-delete{
+        float:left;
+        margin-top:-26%;
+        margin-left:5%;
+    }
+}

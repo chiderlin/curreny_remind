@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/change_email" method="post">
+
+    <div class="form-group">
+        <label for="InputNewEmail">您的新電子信箱</label>
+        <input type="email" class="form-control" id="InputNewEmail" name="InputNewEmail" placeholder="您的新電子信箱"
+            aria-describedby="emailHelp" required="required">
+        <small id="emailHelp" class="form-text text-muted">我們將會把提醒信件寄往這個新電子信箱</small>
+    </div>
+    <div class="form-group">
+        <label for="InputPassword">密碼</label>
+        <input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="密碼"
+            required="required">
+    </div>
+    <p>{{message}}</p>
+    <button type="submit" class="btn btn-primary">更新</button>
+</form>
+{% endblock %}

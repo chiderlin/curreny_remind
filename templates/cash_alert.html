@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+<!--這邊繼承base頁面 -->
+{% block content %}
+<div class="row">
+  {% for cash_data in cash_data %}
+  <div class="col-sm-6 box-center">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <form action="/update_alert" method="POST">
+        <div class="card-header">{{cash_data.currency}}</div>
+        <input type="hidden" name="currency" value="{{cash_data.currency}}">
+        <input type="hidden" name="rate_exchange" value="cash">
+        <div class="card-body">
+          <label for="bank_buy" class="card-text">銀行買入: </label>
+          <div>
+            <input class="form-input" type="text" id="bank_buy" name="bank_buy" required="required" placeholder="{{cash_data.price[0]}}" pattern="\d+\.?\d*">
+          </div>
+          <label class="card-text">銀行賣出: </label>
+          <div>
+            <input class="form-input" type="text" id="bank_sale" name="bank_sale" required="required" placeholder="{{cash_data.price[1]}}" pattern="\d+\.?\d*">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-update">更新</button>
+      </form>
+      <form action="/delete_alert" method="POST">
+        <input type="hidden" name="currency" value="{{cash_data.currency}}">
+        <input type="hidden" name="rate_exchange" value="cash">
+        <button type="submit" class="btn btn-primary btn-delete">刪除</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+<!-- 另一個樣式， 用了上面的樣式套用下面的一些-->
+<!-- <div class="row">
+    {% for cash_data in cash_data %}
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{cash_data.currency}}</h5>
+          <p class="card-text">銀行買入: {{cash_data.price[0]}}</p>
+          <p class="card-text">銀行賣出: {{cash_data.price[1]}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div> -->
+{% endblock %}
+<!--往上移會消失-->

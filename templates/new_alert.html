@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/new_alert" method="post">
+    <div class="form-group">
+        <label for="input_currency">幣別</label>
+        <select class="form-control" id="input_currency" name="input_currency">
+            {% for position in range(0,19)%}
+            <option value="{{moneydict[position].currency_ch}}">{{moneydict[position].currency_ch}}</option>
+            {% endfor %}
+        </select>
+                
+        <!-- 填入資料 下方提醒字樣-->
+        <small id="bank_buyHelp" class="form-text text-muted">每個幣別只能新增兩種匯率通知。</small>
+
+    </div>
+
+    <div class="form-group">
+        <label for="rate_exchange">匯率</label>
+        <select class="form-control" id="rate_exchange" name="rate_exchange">
+            <option value="cash">現金匯率</option>
+            <option value="sign">即期匯率</option>
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label for="bank_buy">銀行買入</label>
+        <input type="text" class="form-control" id="bank_buy" name="bank_buy" placeholder="通知價格"
+            aria-describedby="bank_buyHelp" required="required" pattern="\d+\.?\d*">
+        <small id="bank_buyHelp" class="form-text text-muted">範例 : 可輸入 10 or 10.1 or 0.1</small>
+    </div>
+
+    <div class="form-group">
+        <label for="bank_sale">銀行賣出</label>
+        <input type="text" class="form-control" id="bank_sale" name="bank_sale" placeholder="通知價格"
+            aria-describedby="bank_saleHelp" required="required" pattern="\d+\.?\d*">
+        <small id="bank_saleHelp" class="form-text text-muted">範例 : 可輸入 10 or 10.1 or 0.1</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">新增</button>
+    <p>{{message}}</p>
+    <p>{{currency_msg}}</p>
+    <p>{{exchange_msg}}</p>
+    <p>{{buy_msg}}</p>
+    <p>{{sale_msg}}</p>
+</form>
+{% endblock %}
